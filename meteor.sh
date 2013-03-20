@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Configuration
-
-# This will be used in URLs and file paths, so don't get too fancy
-# Alphanumeric characters and underscores should be ok
-export APP_NAME=meteorapp
-
 # IP or URL of the server you want to deploy to
 export APP_HOST=example.com
 
@@ -14,6 +8,7 @@ export APP_HOST=example.com
 
 # You usually don't need to change anything below this line
 
+export APP_NAME=meteorapp
 export ROOT_URL=http://$APP_HOST
 export APP_DIR=/var/www/$APP_NAME
 export MONGO_URL=mongodb://localhost:27017/$APP_NAME

@@ -14,7 +14,7 @@ Because deploying to custom servers should be as simple as everything else in Me
 
 Meteor.sh assumes that you have some kind of Ubuntu-Server and root access to it.
 
-Move the `meteor.sh` file into your project dir and change the `APP_NAME` and `APP_HOST` variables.
+Move the `meteor.sh` file into your project dir and change the `APP_HOST` variable.
 
 Meteor.sh will try to SSH as root to `APP_HOST`.
 
