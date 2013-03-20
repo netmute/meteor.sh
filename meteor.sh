@@ -9,12 +9,19 @@ export APP_NAME=meteorapp
 # IP or URL of the server you want to deploy to
 export APP_HOST=example.com
 
+# Uncommend this if your host is an EC2 instance
+# export EC2_PEM_FILE=path/to/your/file.pem
+
 # You usually don't need to change anything below this line
 
-export SSH_HOST=root@$APP_HOST
 export ROOT_URL=http://$APP_HOST
 export APP_DIR=/var/www/$APP_NAME
 export MONGO_URL=mongodb://localhost:27017/$APP_NAME
+if [ -z "$EC2_PEM_FILE" ]; then
+    export SSH_HOST="root@$APP_HOST" SSH_OPT=""
+  else
+    export SSH_HOST="ubuntu@$APP_HOST" SSH_OPT="-i $EC2_PEM_FILE"
+fi
 if [ -d ".meteor/meteorite" ]; then
     export METEOR_CMD=mrt
   else
@@ -25,7 +32,7 @@ case "$1" in
 setup )
 echo Preparing the server...
 echo Get some coffee, this will take a while.
-ssh $SSH_HOST APP_DIR=$APP_DIR DEBIAN_FRONTEND=noninteractive 'bash -s' > /dev/null 2>&1 <<'ENDSSH'
+ssh $SSH_OPT $SSH_HOST DEBIAN_FRONTEND=noninteractive 'sudo -E bash -s' > /dev/null 2>&1 <<'ENDSSH'
 apt-get update
 apt-get install -y python-software-properties
 add-apt-repository ppa:chris-lea/node.js-legacy
@@ -38,9 +45,9 @@ echo Done. You can now deploy your app.
 deploy )
 echo Deploying...
 $METEOR_CMD bundle bundle.tgz > /dev/null 2>&1 &&
-scp bundle.tgz $SSH_HOST:/tmp/ > /dev/null 2>&1 &&
+scp $SSH_OPT bundle.tgz $SSH_HOST:/tmp/ > /dev/null 2>&1 &&
 rm bundle.tgz > /dev/null 2>&1 &&
-ssh $SSH_HOST MONGO_URL=$MONGO_URL ROOT_URL=$ROOT_URL APP_DIR=$APP_DIR 'bash -s' > /dev/null 2>&1 <<'ENDSSH'
+ssh $SSH_OPT $SSH_HOST MONGO_URL=$MONGO_URL ROOT_URL=$ROOT_URL APP_DIR=$APP_DIR 'sudo -E bash -s' > /dev/null 2>&1 <<'ENDSSH'
 if [ ! -d "$APP_DIR" ]; then
 mkdir -p $APP_DIR
 chown -R www-data:www-data $APP_DIR

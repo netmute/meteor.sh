@@ -18,6 +18,10 @@ Move the `meteor.sh` file into your project dir and change the `APP_NAME` and `A
 
 Meteor.sh will try to SSH as root to `APP_HOST`.
 
+#### A note on EC2 support:
+
+If your server happens to be an Amazon EC2 instance, uncomment the `EC2_PEM_FILE` variable and point it to your pem file. Meteor.sh will then do the right things for those instances.
+
 ### Install the server:
 
 ```
