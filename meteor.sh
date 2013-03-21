@@ -3,7 +3,7 @@
 # IP or URL of the server you want to deploy to
 export APP_HOST=example.com
 
-# Uncommend this if your host is an EC2 instance
+# Uncomment this if your host is an EC2 instance
 # export EC2_PEM_FILE=path/to/your/file.pem
 
 # You usually don't need to change anything below this line
