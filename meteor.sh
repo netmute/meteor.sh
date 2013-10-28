@@ -33,9 +33,9 @@ echo Get some coffee, this will take a while.
 ssh $SSH_OPT $SSH_HOST DEBIAN_FRONTEND=noninteractive 'sudo -E bash -s' > /dev/null 2>&1 <<'ENDSSH'
 apt-get update
 apt-get install -y python-software-properties
-add-apt-repository ppa:chris-lea/node.js-legacy
+add-apt-repository ppa:chris-lea/node.js
 apt-get update
-apt-get install -y build-essential nodejs npm mongodb
+apt-get install -y build-essential nodejs mongodb
 npm install -g forever
 ENDSSH
 echo Done. You can now deploy your app.
@@ -61,15 +61,15 @@ npm install fibers@1.0.1
 popd
 chown -R www-data:www-data bundle
 patch -u bundle/programs/server/packages/webapp.js <<'ENDPATCH'
-@@ -464,6 +464,8 @@
-     httpServer.listen(localPort, localIp, Meteor.bindEnvironment(function() {          // 445
-       if (argv.keepalive || true)                                                      // 446
-         console.log("LISTENING"); // must match run.js                                 // 447
+@@ -447,6 +447,8 @@ var runWebAppServer = function () {
+     httpServer.listen(localPort, localIp, Meteor.bindEnvironment(function() {                              // 428
+       if (argv.keepalive || true)                                                                          // 429
+         console.log("LISTENING"); // must match run.js                                                     // 430
 +      process.setgid('www-data');
 +      process.setuid('www-data');
-       var port = httpServer.address().port;                                            // 448
-       if (bind.viaProxy && bind.viaProxy.proxyEndpoint) {                              // 449
-         WebAppInternals.bindToProxy(bind.viaProxy);                                    // 450
+       var port = httpServer.address().port;                                                                // 431
+       var proxyBinding;                                                                                    // 432
+                                                                                                            // 433
 ENDPATCH
 forever start bundle/main.js
 popd
