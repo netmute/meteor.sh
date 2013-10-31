@@ -3,9 +3,6 @@
 # IP or URL of the server you want to deploy to
 export APP_HOST=example.com
 
-# Change the port if you want to run on an alternate port
-export PORT=80
-
 # Uncomment this if your host is an EC2 instance
 # export EC2_PEM_FILE=path/to/your/file.pem
 
@@ -13,6 +10,7 @@ export PORT=80
 
 export APP_NAME=meteorapp
 export ROOT_URL=http://$APP_HOST
+export PORT=80
 export APP_DIR=/var/www/$APP_NAME
 export MONGO_URL=mongodb://localhost:27017/$APP_NAME
 if [ -z "$EC2_PEM_FILE" ]; then
