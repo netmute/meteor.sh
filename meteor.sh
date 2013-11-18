@@ -1,27 +1,27 @@
 #!/bin/bash
 
 # IP or URL of the server you want to deploy to
-export APP_HOST=example.com
+APP_HOST=example.com
 
 # Uncomment this if your host is an EC2 instance
-# export EC2_PEM_FILE=path/to/your/file.pem
+# EC2_PEM_FILE=path/to/your/file.pem
 
 # You usually don't need to change anything below this line
 
-export APP_NAME=meteorapp
-export ROOT_URL=http://$APP_HOST
-export PORT=80
-export APP_DIR=/var/www/$APP_NAME
-export MONGO_URL=mongodb://localhost:27017/$APP_NAME
+APP_NAME=meteorapp
+ROOT_URL=http://$APP_HOST
+PORT=80
+APP_DIR=/var/www/$APP_NAME
+MONGO_URL=mongodb://localhost:27017/$APP_NAME
 if [ -z "$EC2_PEM_FILE" ]; then
-    export SSH_HOST="root@$APP_HOST" SSH_OPT=""
+    SSH_HOST="root@$APP_HOST" SSH_OPT=""
   else
-    export SSH_HOST="ubuntu@$APP_HOST" SSH_OPT="-i $EC2_PEM_FILE"
+    SSH_HOST="ubuntu@$APP_HOST" SSH_OPT="-i $EC2_PEM_FILE"
 fi
 if [ -d ".meteor/meteorite" ]; then
-    export METEOR_CMD=mrt
+    METEOR_CMD=mrt
   else
-    export METEOR_CMD=meteor
+    METEOR_CMD=meteor
 fi
 
 case "$1" in
