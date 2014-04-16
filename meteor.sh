@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o errexit
 
 # IP or URL of the server you want to deploy to
 APP_HOST=example.com
