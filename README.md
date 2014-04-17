@@ -12,8 +12,6 @@ Because deploying to custom servers should be as simple as everything else in Me
 
 ### Before we start:
 
-#### Please note: as of October 2013, meteor.sh is NOT compatible with Meteor versions < 0.6.6 anymore. If you used an earlier version, see [this issue](https://github.com/netmute/meteor.sh/issues/8) for some ideas on how to update your server setup.
-
 Meteor.sh assumes that you have some kind of Ubuntu-Server and root access to it.
 
 Move the `meteor.sh` file into your project dir and change the `APP_HOST` variable.
