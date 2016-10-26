@@ -2,7 +2,7 @@
 set -o errexit
 
 # IP or URL of the server you want to deploy to
-APP_HOST=example.com
+APP_HOST=`hostname`
 
 # Uncomment this if your host is an EC2 instance
 # EC2_PEM_FILE=path/to/your/file.pem
