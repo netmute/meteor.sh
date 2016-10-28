@@ -41,3 +41,8 @@ Deploys your app to the server and starts it as a service.
 ## Meteorite support
 
 Meteor.sh will detect if your project uses Meteorite and use it accordingly.
+
+## Alternatives
+
+[Meteor-UP](https://github.com/arunoda/meteor-up) is an NPM package that lets you configure your deployment with JSON and supports `settings.json` directly. It may also keep up with new Meteor releases faster than `meteor.sh`.
+
