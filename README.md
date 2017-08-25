@@ -1,3 +1,11 @@
+# This project is not maintained anymore!
+
+As you have probably noticed, nothing happened here for years.
+
+The script is most likely broken in all kind of ways, please don't use it on anything important anymore.
+
+This project now exists mostly as an archive to satisfy your curiousity.
+
 # Meteor.sh
 
 ## What?
@@ -18,10 +26,6 @@ Move the `meteor.sh` file into your project dir and change the `APP_HOST` variab
 
 Meteor.sh will try to SSH as root to `APP_HOST`.
 
-#### A note on EC2 support:
-
-If your server happens to be an Amazon EC2 instance, uncomment the `EC2_PEM_FILE` variable and point it to your pem file. Meteor.sh will then do the right things for those instances.
-
 ### Install the server:
 
 ```
@@ -37,12 +41,3 @@ This will install Node, Mongo and other dependencies for Meteor and Meteor.sh on
 ```
 
 Deploys your app to the server and starts it as a service.
-
-## Meteorite support
-
-Meteor.sh will detect if your project uses Meteorite and use it accordingly.
-
-## Alternatives
-
-[Meteor-UP](https://github.com/arunoda/meteor-up) is an NPM package that lets you configure your deployment with JSON and supports `settings.json` directly. It may also keep up with new Meteor releases faster than `meteor.sh`.
-
